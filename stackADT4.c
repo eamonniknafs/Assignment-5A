@@ -26,3 +26,13 @@ Stack Stack_create(void)
   stack->top = 0;
   return s;
 }
+
+bool Stack_is_empty(Stack stack)
+{
+  return stack->top == 0;
+}
+
+bool Stack_is_full(Stack stack)
+{
+  return stack->top == STACK_SIZE;
+}
