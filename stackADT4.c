@@ -24,3 +24,13 @@ struct Stack *Stack_create(unsigned int capacity){
     stack->items = (int*)malloc(stack->capacity * sizeof(int));
     return stack;
 }
+
+bool Stack_is_empty(struct Stack* stack)
+{
+    return stack->top == -1;
+}
+
+bool Stack_is_full(struct Stack* stack)
+{
+    return stack->top == stack->capacity - 1;
+}
