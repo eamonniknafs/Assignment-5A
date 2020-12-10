@@ -1,3 +1,13 @@
+/*
+ * stackADT4.c: a simple implementation of a stack of size 50.
+ *
+ * Name: Eamon Niknafs
+ * email: en@bu.edu
+ *
+ * NOTE: The texbook resources (found here: http://knking.com/books/c2/programs/stackADT.c)
+ * were used as a reference to write this program.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #ifdef IMP
@@ -11,7 +21,7 @@
 #include <stdlib.h>
 #include "stackADT.h"
 
-#define SIZE 50
+#define SIZE 50 //Size of stack
 
 struct stack_type {
   void * items[SIZE];
@@ -59,10 +69,15 @@ void * Stack_pop(Stack stack)
 
 void Stack_destroy(Stack stack)
 {
-  free(stack);
+    for (int i = 0; i < stack->top; i++)
+    {
+        free(stack->items[i]);
+    }
+    free (stack);
 }
 
 void Stack_make_empty(Stack stack)
 {
-  stack->top = 0;
+    while (!Stack_is_empty(stack)) Stack_pop(stack);
+    stack->top = 0;
 }
