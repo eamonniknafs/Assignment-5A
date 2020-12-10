@@ -14,7 +14,7 @@
 #define SIZE 50
 
 struct stack_type {
-  int items[SIZE];
+  void * items[SIZE];
   int top;
 };
 
@@ -30,7 +30,7 @@ Stack Stack_create(void)
   if (stack == NULL)
     terminate("Error in create: stack could not be created.");
   stack->top = 0;
-  return s;
+  return stack;
 }
 
 bool Stack_is_empty(Stack stack)
@@ -40,20 +40,20 @@ bool Stack_is_empty(Stack stack)
 
 bool Stack_is_full(Stack stack)
 {
-  return stack->top == STACK_SIZE;
+  return stack->top == SIZE;
 }
 
-void Stack_push(Stack stack, int i)
+void Stack_push(Stack stack, void * i)
 {
-  if (is_full(stack))
+  if (Stack_is_full(stack))
     terminate("Error in push: stack is full.");
-  stack->contents[stack->top++] = i;
+  stack->items[stack->top++] = i;
 }
 
-int Stack_pop(Stack stack)
+void * Stack_pop(Stack stack)
 {
-  if (is_empty(stack))
+  if (Stack_is_empty(stack))
     terminate("Error in pop: stack is empty.");
-  return stack->contents[--stack->top];
+  return stack->items[--stack->top];
 }
 
