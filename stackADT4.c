@@ -57,3 +57,12 @@ void * Stack_pop(Stack stack)
   return stack->items[--stack->top];
 }
 
+void Stack_destroy(Stack stack)
+{
+  free(stack);
+}
+
+void Stack_make_empty(Stack stack)
+{
+  stack->top = 0;
+}
